@@ -1,5 +1,5 @@
 module TurboClone::StreamsHelper 
   def turbo_stream
-    TurboClone::Stream::TagBuilder.new(self)
+    TurboClone::Streams::TagBuilder.new(self)
   end
 end
