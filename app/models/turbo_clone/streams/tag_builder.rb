@@ -1,4 +1,5 @@
 class TurboClone::Streams::TagBuilder
+
   def initialize(view_context)
     @view_context = view_context
     @view_context.formats |= [:html]
@@ -28,13 +29,23 @@ class TurboClone::Streams::TagBuilder
     turbo_stream_action_tag(name, target: target, template: template)
   end
 
+  # def turbo_stream_action_tag(action, target:, template:)
+  #   template = action == :remove ? "" : "<template>#{template}</template>"
+
+  #   if target = convert_to_turbo_stream_dom_id(target)
+  #     %(<turbo-stream target="#{target}" action="#{action}">#{template}</turbo-stream>).html_safe
+  #   else 
+  #     rails ArgumentError, "target must be supplied"
+  #   end
+  # end
+
   def turbo_stream_action_tag(action, target:, template:)
     template = action == :remove ? "" : "<template>#{template}</template>"
 
     if target = convert_to_turbo_stream_dom_id(target)
       %(<turbo-stream target="#{target}" action="#{action}">#{template}</turbo-stream>).html_safe
-    else 
-      rails ArgumentError, "target must be supplied"
+    else
+      raise ArgumentError, "target must be supplied"
     end
   end
 
